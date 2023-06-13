@@ -1,5 +1,10 @@
-import NRQLService from "./services/NRQLService";
+import NRQLService from "./services/NRQLService.js";
+import NerdGraphService from "./services/NerdGraphService.js";
 
-let NRQL = NRQLService.getNRQL({limit: 100});
+const run = async () => {
+    let NRQL = NRQLService.getNRQL({limit: 100});
+    let results = await NerdGraphService.run(NRQL);
+    console.log("results", results);
+}
 
-console.log(NRQL);
+run();

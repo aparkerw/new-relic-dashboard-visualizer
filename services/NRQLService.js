@@ -1,7 +1,5 @@
-
-
-const getNRQL = ({limit = 5}) => {
-return `{
+const getNRQL = ({ limit = 5 }) => {
+    return `{
     actor {
       nrql(accounts: 1, query: "SELECT * FROM Transaction limit ${limit}") {
         nrql
@@ -14,4 +12,4 @@ return `{
   }`;
 };
 
-export default {getNRQL};
+export default { getNRQL };
