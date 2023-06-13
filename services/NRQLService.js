@@ -12,4 +12,8 @@ const getNRQL = ({ limit = 5 }) => {
   }`;
 };
 
-export default { getNRQL };
+const getNRQLTimeSeries = ({ limit = 'max' }) => {
+    return `SELECT average(\`newrelic.goldenmetrics.browser.application.pageLoadSeconds\`) FROM Metric SINCE 7 DAYS AGO TIMESERIES`;
+};
+
+export default { getNRQL, getNRQLTimeSeries };
