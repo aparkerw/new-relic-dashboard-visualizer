@@ -27,42 +27,32 @@ const runNRQL = async (nrql) => {
         variables: {}
     }
 
-    let resp = await axios.post('https://api.newrelic.com/graphql', graphql_query, {
+    var resp;
+    resp = await axios.post('https://api.newrelic.com/graphql', graphql_query, {
         headers: headers()
+    })
+    .catch((e) => {
+        console.log('GraphQL Error:', e.message);
     });
 
-    console.log(resp.data.data.actor.nrql.results);
-
-    return '';
+    return resp?.data?.data?.actor?.nrql?.results;
 }
 
 const getAccounts = async () => {
 
     var graphql = { query: "{\n  actor {\n    accounts {\n      id\n      name\n    }\n  }\n}", variables: null };
 
-    axios({
+    var resp;
+    resp = await axios({
         url: 'https://api.newrelic.com/graphql',
         method: 'post',
         headers: headers(),
         data: graphql
-    }).then((result) => {
-        console.log(JSON.stringify(result.data))
+    }).catch((e) => {
+        console.log('GraphQL account lookup error:', e.message);
     });
 
-    // axios.post('https://one.newrelic.com/graphql', graphql, {
-    //     headers: {
-    //         "Content-Type": "application/json",
-    //         "API-Key": "NRAK-GCI9V3ZCONKUJQ02YM383D9J5DE"
-    //     }
-    // })
-    //     .then(function (response) {
-    //         console.log('111', response);
-    //     })
-    //     .catch(function (error) {
-    //         console.log('222', error);
-    //     });
-
-    return '';
+    return resp?.data?.data?.actor?.accounts;
 }
 
 
