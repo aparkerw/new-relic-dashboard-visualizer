@@ -1,4 +1,3 @@
-import react from 'react';
 import styled from 'styled-components'
 
 const Wrapper = styled.div`
@@ -26,7 +25,7 @@ const Value = styled.div`
 const Metric = (params) => {
   return (<Wrapper>
     <Title>{params.metricName}</Title>
-    <Value>{JSON.stringify(params.metricValue)}</Value>
+    <Value>{params.metricValue}</Value>
   </Wrapper>);
 }
 

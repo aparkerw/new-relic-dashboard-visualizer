@@ -7,7 +7,7 @@ import axios from 'axios';
 function App() {
 
   const [pageLoadTimeseries, setPageLoadTimeseries] = useState({});
-  const [pageLoadAverage, setPageLoadAverage] = useState({});
+  const [pageLoadAverage, setPageLoadAverage] = useState(0);
 
   // load timeseries data
   useEffect(() => {
@@ -36,7 +36,7 @@ function App() {
           <Metric metricName={'Static Metric'} metricValue={'100.0'} />
         </div>
         <div style={{ flexDirection: 'row', display: 'flex', width: '80%' }}>
-          <Timeseries seriesName={'Page Load Time'} seriesData={pageLoadTimeseries} />
+          <Timeseries seriesName={'Page Load Time'} headers={pageLoadTimeseries.headers || ['1','2']} seriesData={pageLoadTimeseries.data} />
         </div>
         <br />
       </header>

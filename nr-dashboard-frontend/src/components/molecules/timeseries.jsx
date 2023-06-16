@@ -1,4 +1,4 @@
-import react from 'react';
+import react, { useMemo } from 'react';
 import styled from 'styled-components';
 import { Chart } from "react-google-charts";
 
@@ -25,20 +25,24 @@ const Value = styled.div`
   font-weight: bold;
 `;
 
-const data = [
-  ["Year", "Sales", "Expenses"],
-  ["2004", 1000, 400],
-  ["2005", 1170, 460],
-  ["2006", 660, 1120],
-  ["2007", 1030, 540],
-];
-
 const options = {
   curveType: "function",
   legend: { position: "bottom" },
 };
 
 const Timeseries = (params) => {
+
+  const data = useMemo(() => {
+    console.log(params.headers);
+    return [
+      params.headers,//["Year", "Sales"],
+      ["2004", 1000],
+      ["2005", 1170],
+      ["2006", 660],
+      ["2007", 1030],
+    ];
+  }, [params.headers]);
+
   return (<Wrapper>
     <Title>{params.seriesName}</Title>
     {/* <Value>{JSON.stringify(params.seriesData)}</Value> */}
