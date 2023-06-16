@@ -12,13 +12,13 @@ const headers = () => {
     };
 }
 
-const runNRQL = async (nrql) => {
-
+const runNRQL = async (nrql, account) => {
+    console.log(nrql);
     var graphql_query = {
     query: `
         {
             actor {
-              nrql(query: "${nrql}", accounts: 3914962) {
+              nrql(query: "${nrql}", accounts: ${account}) {
                 results
                 totalResult
               }
