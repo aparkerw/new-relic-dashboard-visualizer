@@ -4,6 +4,7 @@ import NerdGraphService from "./services/NerdGraphService.js";
 import { MetricNames, SinceTimeRange, SeriesIntervalTimeRange, AggregateFunctions } from "./Variables.js";
 import express from 'express';
 import cors from 'cors';
+import dayjs from 'dayjs';
 
 const app = express()
 const port = 3001
@@ -17,7 +18,9 @@ app.get('/timeseries/golden-page-load-seconds', async (req, res) => {
   let nrql = NRQLService.getNRQLTimeSeries({ metric: MetricNames.GOLDEN_PAGE_LOAD_SECONDS, since: SinceTimeRange.WEEK, interval: SeriesIntervalTimeRange.DAY });
   let cpuData = await NerdGraphService.runNRQL(nrql, accountId);
   cpuData = cpuData.map(entry => {
-    return [entry.beginTimeSeconds, entry['average.newrelic.goldenmetrics.browser.application.pageLoadSeconds']];
+    const middleDate = (entry.beginTimeSeconds + entry.endTimeSeconds) / 2 * 1000;
+    let sampleDate = dayjs(middleDate).format('MM/DD/YYYY');
+    return [sampleDate, entry['average.newrelic.goldenmetrics.browser.application.pageLoadSeconds']];
   });
   res.setHeader('Content-Type', 'application/json');
   res.end(JSON.stringify({
