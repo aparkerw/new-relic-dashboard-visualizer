@@ -2,7 +2,6 @@ export const MetricNames = {
     GOLDEN_PAGE_LOAD_SECONDS: 'newrelic.goldenmetrics.browser.application.pageLoadSeconds',
     NEW_RELIC_CONSUMPTION: 'newrelic.resourceConsumption.currentValue',
     NEW_RELIC_SLI_GOOD: 'newrelic.sli.good',
-    Orange: 4
 };
 
 export const SinceTimeRange = {

@@ -26,7 +26,7 @@ const Value = styled.div`
 const Metric = (params) => {
   return (<Wrapper>
     <Title>{params.metricName}</Title>
-    <Value>{params.metricValue}</Value>
+    <Value>{JSON.stringify(params.metricValue)}</Value>
   </Wrapper>);
 }
 
