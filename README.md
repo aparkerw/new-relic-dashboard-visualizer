@@ -42,6 +42,22 @@ NEW_RELIC_API_KEY=NRAK-ABCDABCDABCD npm start
 
 The results you will see should be an overview of the types of queries and output you can expect from this demonstrative application.
 
+### Web Dashboard Demo 
+
+This demo also includes a sample web dashboard that includes a React frontend and an express backend. This will demonstrate the retrieval and consumption of New Relic data to display a UI.
+
+To start the web server locally on port 3000 you can run:
+
+```
+npm run start:frontend
+```
+
+To start the api server on port 3001 you can run:
+
+```
+npm run start:backend
+```
+
 ### Output
 
 ```JSON
