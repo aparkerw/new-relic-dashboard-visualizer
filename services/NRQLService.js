@@ -1,4 +1,4 @@
-import { SeriesIntervalTimeRange, SinceTimeRange } from "../Variables.js";
+import { SeriesIntervalTimeRange, SinceTimeRange, AggregateFunctions } from "../Variables.js";
 
 const getNRQL = ({ limit = 5 }) => {
     return `{
@@ -12,8 +12,9 @@ const getNRQL = ({ limit = 5 }) => {
   }`;
 };
 
-const getNRQLTimeSeries = ({ metric, interval = SeriesIntervalTimeRange.DAY, since = SinceTimeRange.WEEK }) => {
-    return `SELECT average(\`${metric}\`) FROM Metric SINCE ${since} TIMESERIES ${interval}`;
+const getNRQLTimeSeries = ({ aggregateFunction = AggregateFunctions.AVERAGE, metric, interval = SeriesIntervalTimeRange.DAY, since = SinceTimeRange.WEEK }) => {
+    let NRQL = `SELECT ${aggregateFunction}(\`${metric}\`) FROM Metric SINCE ${since} TIMESERIES ${interval}`;
+    return NRQL;
 };
 
 export default { getNRQL, getNRQLTimeSeries };
