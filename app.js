@@ -1,4 +1,4 @@
-import 'dotenv/config';
+import "dotenv/config.js";
 import NRQLService from "./services/NRQLService.js";
 import NerdGraphService from "./services/NerdGraphService.js";
 
