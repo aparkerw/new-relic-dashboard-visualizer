@@ -36,12 +36,9 @@ const Timeseries = (params) => {
     console.log(params.headers);
     return [
       params.headers,//["Year", "Sales"],
-      ["2004", 1000],
-      ["2005", 1170],
-      ["2006", 660],
-      ["2007", 1030],
+      ...params.seriesData
     ];
-  }, [params.headers]);
+  }, [params.headers, params.seriesData]);
 
   return (<Wrapper>
     <Title>{params.seriesName}</Title>

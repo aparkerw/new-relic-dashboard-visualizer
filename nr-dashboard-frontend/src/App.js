@@ -12,8 +12,9 @@ function App() {
   // load timeseries data
   useEffect(() => {
     const load = async () => {
-      let resp = await axios.get('http://localhost:3001/timeseries/');
+      let resp = await axios.get('http://localhost:3001/timeseries/golden-page-load-seconds');
       setPageLoadTimeseries(resp.data);
+      console.log(resp.data);
     }
     load();
   }, []);
@@ -36,7 +37,7 @@ function App() {
           <Metric metricName={'Static Metric'} metricValue={'100.0'} />
         </div>
         <div style={{ flexDirection: 'row', display: 'flex', width: '80%' }}>
-          <Timeseries seriesName={'Page Load Time'} headers={pageLoadTimeseries.headers || ['1','2']} seriesData={pageLoadTimeseries.data} />
+          <Timeseries seriesName={'Page Load Time'} headers={pageLoadTimeseries.headers || ['1','2']} seriesData={pageLoadTimeseries.data || []} />
         </div>
         <br />
       </header>
