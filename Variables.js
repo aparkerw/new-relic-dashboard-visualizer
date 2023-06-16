@@ -5,14 +5,14 @@ export const MetricNames = {
     Orange: 4
 };
 
-export const TimeRange = {
+export const SinceTimeRange = {
     WEEK: '7 DAYS AGO',
     DAY: '1 DAY AGO',
     HOUR: '1 HOUR AGO',
     MINUTE: '1 MINUTE AGO'
 };
 
-export const TimeSeriesRange = {
+export const SeriesIntervalTimeRange = {
     WEEK: '1 WEEK',
     DAY: '1 DAY',
     HOUR: '1 HOUR',

@@ -1,3 +1,5 @@
+import { SeriesIntervalTimeRange, SinceTimeRange } from "../Variables.js";
+
 const getNRQL = ({ limit = 5 }) => {
     return `{
     actor {
@@ -10,8 +12,8 @@ const getNRQL = ({ limit = 5 }) => {
   }`;
 };
 
-const getNRQLTimeSeries = ({ metric, limit = 'max' }) => {
-    return `SELECT average(\`${metric}\`) FROM Metric SINCE 7 DAYS AGO TIMESERIES 2 DAY LIMIT ${limit}`;
+const getNRQLTimeSeries = ({ metric, interval = SeriesIntervalTimeRange.DAY, since = SinceTimeRange.WEEK }) => {
+    return `SELECT average(\`${metric}\`) FROM Metric SINCE ${since} TIMESERIES ${interval}`;
 };
 
 export default { getNRQL, getNRQLTimeSeries };
